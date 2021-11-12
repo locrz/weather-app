@@ -4,11 +4,16 @@ import LottieView from "lottie-react-native";
 import { Button } from "../../components/Button";
 import { Text } from "../../components/Text";
 import { Container, Body, Footer } from "./styles";
+import { useNavigation } from "@react-navigation/core";
 
 // https://dribbble.com/shots/16361858-Weather-Forecast-Mobile-application
 
 export function Welcome() {
-  const animation = useRef();
+  const navigation = useNavigation();
+
+  const onButtonPress = () => {
+    navigation.navigate("Dashboard");
+  };
 
   return (
     <Container>
@@ -19,6 +24,7 @@ export function Welcome() {
             height: 240,
           }}
           autoPlay
+          speed={0.2}
           source={require("../../../assets/weather.json")}
         />
         <Text size={36}>
@@ -30,7 +36,7 @@ export function Welcome() {
         <Text>Here you can find info about all</Text>
       </Body>
       <Footer>
-        <Button>
+        <Button onPress={onButtonPress}>
           <Text color="#18194d">Get started!</Text>
         </Button>
       </Footer>
